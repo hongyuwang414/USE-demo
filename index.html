@@ -28,8 +28,8 @@
                 radial-gradient(circle at 100% 100%, rgba(157, 80, 187, 0.08) 0%, transparent 35%);
             color: var(--text-main);
             margin: 0;
-            line-height: 1.8;
-            padding-bottom: 150px;
+            line-height: 1.7;
+            padding-bottom: 100px;
         }
 
         .container {
@@ -38,65 +38,65 @@
             padding: 0 40px;
         }
 
-        /* 顶部标题区域：应用大间距和字母拉伸 */
+        /* 优化头部间距：从 160px 减小到 80px */
         header {
             text-align: center;
-            padding: 160px 0 100px; /* 极大的顶部间隙 */
+            padding: 80px 0 40px; 
         }
 
         h1.hero-title {
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: 800;
             margin: 0;
             background: linear-gradient(135deg, #fff 30%, var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 14px; /* 字母间的开阔感 */
+            letter-spacing: 12px;
             text-transform: uppercase;
         }
 
         .hero-subtitle {
             color: var(--accent-blue);
             font-family: 'JetBrains Mono', monospace;
-            margin-top: 30px;
+            margin-top: 15px; /* 紧贴标题 */
             font-size: 1.1rem;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             opacity: 0.9;
         }
 
-        /* 介绍区域间距 */
+        /* 优化介绍区域间距 */
         .intro-box {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 60px;
-            margin: 60px 0 160px; /* 底部留出巨大空隙 */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-radius: 28px;
+            padding: 40px 50px;
+            margin: 30px 0 60px; /* 减小了外部间距 */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
-        .intro-box p { font-size: 1.2rem; color: var(--text-dim); }
+        .intro-box p { font-size: 1.1rem; color: var(--text-dim); margin: 0;}
         .label-guide {
             display: flex;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 25px;
+            margin-top: 20px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .label-guide span b { color: var(--accent-blue); }
 
-        /* 章节标题间距 */
+        /* 优化小标题间距：从 220px 减小到 100px */
         .section-header {
-            margin-top: 220px; /* 章节之间 220px 的超大空隙 */
-            margin-bottom: 80px;
+            margin-top: 100px; 
+            margin-bottom: 50px;
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
         }
         .section-header h2 {
-            font-size: 2.6rem;
+            font-size: 2.2rem;
             margin: 0;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         .section-header .line {
             height: 1px;
@@ -104,32 +104,32 @@
             background: linear-gradient(90deg, var(--border), transparent);
         }
 
-        /* 案例卡片间距 */
+        /* 案例卡片间距保持合理，微调至 80px */
         .case-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 50px;
-            margin-bottom: 120px; /* 案例卡片之间 120px 间距 */
+            border-radius: 28px;
+            padding: 40px;
+            margin-bottom: 80px; 
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .case-card:hover {
             border-color: rgba(255,255,255,0.2);
-            transform: translateY(-10px);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
         .case-title {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
+            font-size: 1.6rem;
+            margin-bottom: 30px;
             font-weight: 600;
             color: var(--accent-blue);
         }
 
         .visual-area {
             width: 100%;
-            margin-bottom: 40px;
-            border-radius: 20px;
+            margin-bottom: 30px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
             background: #000;
@@ -139,60 +139,57 @@
             display: block;
         }
 
-        /* 音频网格间距 */
         .audio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px; /* 音频块之间的呼吸感 */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
         .audio-item {
             background: rgba(0,0,0,0.4);
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             border: 1px solid var(--border);
         }
         .audio-item h4 {
-            margin: 0 0 15px 0;
-            font-size: 0.9rem;
+            margin: 0 0 12px 0;
+            font-size: 0.85rem;
             text-transform: uppercase;
             color: var(--text-dim);
         }
         audio {
             width: 100%;
-            height: 40px;
+            height: 38px;
             filter: invert(100%) hue-rotate(180deg) brightness(1.5);
         }
 
-        /* TSE 专属样式 */
         .tse-info {
             background: rgba(255, 157, 0, 0.05);
-            border-left: 6px solid var(--accent-orange);
-            padding: 35px;
-            border-radius: 0 24px 24px 0;
-            margin-bottom: 45px;
+            border-left: 5px solid var(--accent-orange);
+            padding: 25px 30px;
+            border-radius: 0 20px 20px 0;
+            margin-bottom: 35px;
         }
         .badge {
             display: inline-block;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: var(--accent-orange);
             color: #000;
         }
         .prompt-text {
             font-family: 'JetBrains Mono', monospace;
             color: var(--accent-orange);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         @media (max-width: 768px) {
-            h1.hero-title { font-size: 2.8rem; letter-spacing: 6px; }
-            header { padding: 100px 0 50px; }
-            .intro-box { padding: 30px; margin-bottom: 80px; }
-            .section-header { margin-top: 120px; }
-            .case-card { padding: 25px; margin-bottom: 60px; }
+            h1.hero-title { font-size: 2.5rem; letter-spacing: 4px; }
+            header { padding: 60px 0 30px; }
+            .section-header { margin-top: 70px; }
+            .case-card { padding: 25px; margin-bottom: 50px; }
         }
     </style>
 </head>
@@ -219,7 +216,6 @@
         <div class="line"></div>
     </div>
 
-    <!-- 2mix to 6mix Cards -->
     <div class="case-card">
         <div class="case-title">Case 01: 2-Source Mixture</div>
         <div class="visual-area"><img src="demo/universal/2mix/spectrogram.jpg"></div>
@@ -395,8 +391,8 @@
 
 </div>
 
-<footer style="text-align: center; padding: 120px 0; border-top: 1px solid var(--border); margin-top: 120px;">
-    <p style="color: var(--text-dim); font-size: 0.95rem;">&copy; 2024 USE Project Team | Advanced Audio Intelligence</p>
+<footer style="text-align: center; padding: 60px 0; border-top: 1px solid var(--border); margin-top: 60px;">
+    <p style="color: var(--text-dim); font-size: 0.9rem;">&copy; 2026 SJTU AudioCC Lab | Advanced Audio Intelligence</p>
 </footer>
 
 </body>
