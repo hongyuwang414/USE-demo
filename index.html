@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USE: Universal Sound Extraction Demos</title>
+    <title>USE Demos | Universal Sound Separation & Extraction</title>
     <!-- 引入现代化字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
@@ -39,7 +39,6 @@
             padding: 0 20px;
         }
 
-        /* 顶部标题装饰 */
         header {
             text-align: center;
             padding: 80px 0 40px;
@@ -75,7 +74,6 @@
         }
         .label-guide span b { color: var(--accent-blue); }
 
-        /* 章节标题 */
         .section-header {
             margin-top: 120px;
             margin-bottom: 50px;
@@ -94,7 +92,6 @@
             background: linear-gradient(90deg, var(--border), transparent);
         }
 
-        /* 卡片设计 */
         .case-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -113,12 +110,8 @@
             font-size: 1.5rem;
             margin-bottom: 25px;
             color: var(--accent-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        /* 媒体布局 */
         .visual-area {
             width: 100%;
             margin-bottom: 30px;
@@ -132,9 +125,7 @@
             display: block;
             transition: transform 0.5s ease;
         }
-        .visual-area:hover img { transform: scale(1.02); }
 
-        /* 音频网格 */
         .audio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -159,7 +150,6 @@
             filter: invert(100%) hue-rotate(180deg) brightness(1.5);
         }
 
-        /* TSE 专属样式 */
         .tse-info {
             background: rgba(255, 157, 0, 0.05);
             border-left: 4px solid var(--accent-orange);
@@ -183,7 +173,6 @@
             font-size: 1.1rem;
         }
 
-        /* 响应式 */
         @media (max-width: 768px) {
             h1.hero-title { font-size: 2.5rem; }
             .audio-grid { grid-template-columns: 1fr; }
@@ -194,8 +183,8 @@
 
 <div class="container">
     <header>
-        <h1 class="hero-title">USE Project</h1>
-        <p style="color: var(--accent-blue); font-family: 'JetBrains Mono';">Next-Generation Universal Sound Extraction</p>
+        <h1 class="hero-title">USE Demos</h1>
+        <p style="color: var(--accent-blue); font-family: 'JetBrains Mono'; margin-top: 15px;">A Unified Model for Universal Sound Separation and Extraction</p>
     </header>
 
     <div class="intro-box">
@@ -207,35 +196,27 @@
         </div>
     </div>
 
-    <!-- =========================================================================
-         SECTION 1: UNIVERSAL SOUND SEPARATION
-         ========================================================================= -->
+    <!-- SECTION 1: UNIVERSAL SOUND SEPARATION -->
     <div class="section-header">
         <h2 style="color: var(--accent-blue);">Universal Sound Separation</h2>
         <div class="line"></div>
     </div>
 
-    <!-- 2mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 01: 2-Source Mixture</span></div>
-        <div class="visual-area">
-            <img src="demo/universal/2mix/spectrogram.jpg" alt="Spectrogram">
-        </div>
+        <div class="case-title">Case 01: 2-Source Mixture</div>
+        <div class="visual-area"><img src="demo/universal/2mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/2mix/MIX.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/2mix/p1.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/2mix/p2.wav"></audio></div>
-            <div class="audio-item"><h4>Ground Truth 1</h4><audio controls src="demo/universal/2mix/s1.wav"></audio></div>
-            <div class="audio-item"><h4>Ground Truth 2</h4><audio controls src="demo/universal/2mix/s2.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 1</h4><audio controls src="demo/universal/2mix/s1.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 2</h4><audio controls src="demo/universal/2mix/s2.wav"></audio></div>
         </div>
     </div>
 
-    <!-- 3mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 02: 3-Source Mixture</span></div>
-        <div class="visual-area">
-            <img src="demo/universal/3mix/spectrogram.jpg" alt="Spectrogram">
-        </div>
+        <div class="case-title">Case 02: 3-Source Mixture</div>
+        <div class="visual-area"><img src="demo/universal/3mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/3mix/MIX.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/3mix/p1.wav"></audio></div>
@@ -247,12 +228,9 @@
         </div>
     </div>
 
-    <!-- 4mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 03: 4-Source Mixture</span></div>
-        <div class="visual-area">
-            <img src="demo/universal/4mix/spectrogram.jpg" alt="Spectrogram">
-        </div>
+        <div class="case-title">Case 03: 4-Source Mixture</div>
+        <div class="visual-area"><img src="demo/universal/4mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/4mix/Mix.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/4mix/p1.wav"></audio></div>
@@ -262,12 +240,9 @@
         </div>
     </div>
 
-    <!-- 5mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 04: 5-Source Mixture</span></div>
-        <div class="visual-area">
-            <img src="demo/universal/5mix/spectrogram.jpg" alt="Spectrogram">
-        </div>
+        <div class="case-title">Case 04: 5-Source Mixture</div>
+        <div class="visual-area"><img src="demo/universal/5mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/5mix/Mix.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/5mix/p1.wav"></audio></div>
@@ -278,12 +253,9 @@
         </div>
     </div>
 
-    <!-- 6mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 05: 6-Source Mixture</span></div>
-        <div class="visual-area">
-            <img src="demo/universal/6mix/spectrogram.jpg" alt="Spectrogram">
-        </div>
+        <div class="case-title">Case 05: 6-Source Mixture</div>
+        <div class="visual-area"><img src="demo/universal/6mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/6mix/Mix.wav"></audio></div>
             <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/6mix/p1.wav"></audio></div>
@@ -295,18 +267,14 @@
         </div>
     </div>
 
-
-    <!-- =========================================================================
-         SECTION 2: SPEECH-MUSIC SEPARATION
-         ========================================================================= -->
+    <!-- SECTION 2: SPEECH-MUSIC SEPARATION -->
     <div class="section-header">
         <h2 style="color: var(--accent-green);">Speech-Music Separation</h2>
         <div class="line"></div>
     </div>
 
-    <!-- 2mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 06: Speech & Music</span></div>
+        <div class="case-title">Case 06: Speech & Music 2Mix</div>
         <div class="visual-area"><img src="demo/speech_music/2mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/2mix/Mix.wav"></audio></div>
@@ -317,9 +285,8 @@
         </div>
     </div>
 
-    <!-- 3mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 07: Multi-Source Content</span></div>
+        <div class="case-title">Case 07: Speech & Music 3Mix</div>
         <div class="visual-area"><img src="demo/speech_music/3mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/3mix/Mix.wav"></audio></div>
@@ -329,9 +296,8 @@
         </div>
     </div>
 
-    <!-- 4mix -->
     <div class="case-card">
-        <div class="case-title"><span>Case 08: Dense Mixture</span></div>
+        <div class="case-title">Case 08: Speech & Music 4Mix</div>
         <div class="visual-area"><img src="demo/speech_music/4mix/spectrogram.jpg"></div>
         <div class="audio-grid">
             <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/4mix/Mix.wav"></audio></div>
@@ -342,18 +308,53 @@
         </div>
     </div>
 
-
-    <!-- =========================================================================
-         SECTION 3: TARGET SOUND EXTRACTION (TSE)
-         ========================================================================= -->
+    <!-- SECTION 3: TARGET SOUND EXTRACTION (TSE) -->
     <div class="section-header">
         <h2 style="color: var(--accent-orange);">Target Sound Extraction</h2>
         <div class="line"></div>
     </div>
 
-    <p style="color: var(--text-dim); margin-bottom: 30px;">Our model performs zero-shot extraction using multimodal cues (Video, Text, or Tags).</p>
+    <!-- TSE PART 1: VIDEO ONLY -->
+    <div class="case-card">
+        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
+        <div class="case-title">Case: 2mix Extraction</div>
+        <div class="visual-area">
+            <video controls muted loop src="demo/TSE/2mix_v/video.mp4"></video>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/2mix_v/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/2mix_v/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/2mix_v/s1.wav"></audio></div>
+        </div>
+    </div>
 
-    <!-- TSE 1: 2mix Multimodal -->
+    <div class="case-card">
+        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
+        <div class="case-title">Case: 3mix Extraction</div>
+        <div class="visual-area">
+            <video controls muted loop src="demo/TSE/3mix_v/video.mp4"></video>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/3mix_v/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/3mix_v/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/3mix_v/s1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE PART 2: TEXT ONLY -->
+    <div class="case-card">
+        <div class="tse-info">
+            <span class="badge">Condition: Text Only</span>
+            <div class="prompt-text">"a man is speaking"</div>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">The mixture contains rain, wind, horns, and speech. The model successfully extracts the target human voice.</p>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>4mix Mixture</h4><audio controls src="demo/TSE/4mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted Voice</h4><audio controls src="demo/TSE/4mix/p1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE PART 3: VIDEO + TEXT + TAG -->
     <div class="case-card">
         <div class="tse-info">
             <span class="badge">Condition: Video + Text + Tag</span>
@@ -366,20 +367,6 @@
         </div>
     </div>
 
-    <!-- TSE 2: 2mix Video Only -->
-    <div class="case-card">
-        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
-        <div class="visual-area">
-            <video controls muted loop src="demo/TSE/2mix_v/video.mp4"></video>
-        </div>
-        <div class="audio-grid">
-            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/2mix_v/Mix.wav"></audio></div>
-            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/2mix_v/p1.wav"></audio></div>
-            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/2mix_v/s1.wav"></audio></div>
-        </div>
-    </div>
-
-    <!-- TSE 3: 3mix Multimodal -->
     <div class="case-card">
         <div class="tse-info">
             <span class="badge">Condition: Video + Text + Tag</span>
@@ -392,36 +379,10 @@
         </div>
     </div>
 
-    <!-- TSE 4: 3mix Video Only -->
-    <div class="case-card">
-        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
-        <div class="visual-area">
-            <video controls muted loop src="demo/TSE/3mix_v/video.mp4"></video>
-        </div>
-        <div class="audio-grid">
-            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/3mix_v/Mix.wav"></audio></div>
-            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/3mix_v/p1.wav"></audio></div>
-            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/3mix_v/s1.wav"></audio></div>
-        </div>
-    </div>
-
-    <!-- TSE 5: 4mix Text Only -->
-    <div class="case-card">
-        <div class="tse-info">
-            <span class="badge">Condition: Text Only</span>
-            <div class="prompt-text">"a man is speaking"</div>
-            <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">Note: Mixture contains rain, wind, horns, and speech. Model extracts clean voice.</p>
-        </div>
-        <div class="audio-grid">
-            <div class="audio-item"><h4>4mix Mixture</h4><audio controls src="demo/TSE/4mix/Mix.wav"></audio></div>
-            <div class="audio-item"><h4>Extracted Voice</h4><audio controls src="demo/TSE/4mix/p1.wav"></audio></div>
-        </div>
-    </div>
-
 </div>
 
 <footer style="text-align: center; padding: 100px 0; border-top: 1px solid var(--border); margin-top: 100px;">
-    <p style="color: var(--text-dim); font-size: 0.9rem;">&copy; 2024 USE Project Team. All Rights Reserved.</p>
+    <p style="color: var(--text-dim); font-size: 0.9rem;">&copy; 2024 USE Project Team | Built for Research Excellence</p>
 </footer>
 
 </body>
