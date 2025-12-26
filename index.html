@@ -3,767 +3,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USE Demos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>USE: Universal Sound Extraction Demos</title>
+    <!-- 引入现代化字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif; /* Modern font */
-            margin: 0;
-            padding: 0;
-            background-color: #e6f7ff; /* Lighter blue for background */
-            color: #333;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 960px; /* Wider container for more items per row */
-            margin: 30px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 15px; /* More rounded corners */
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15); /* More prominent shadow */
-        }
-        h1 {
-            text-align: center;
-            color: #007bff; /* Vibrant blue for main title */
-            font-size: 3.2em; /* Larger main title */
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-        }
-        .intro-text {
-            /* Changed to allow ul inside and control its margin */
-            font-size: 1.1em;
-            color: #444;
-            margin-bottom: 40px;
-            padding: 15px 25px;
-            background-color: #f8fcfd; /* Very light blue background */
-            border-left: 5px solid #007bff; /* Blue accent border */
-            border-radius: 8px;
-            line-height: 1.8;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
-        .intro-text p {
-            text-align: justify; /* Keep paragraphs justified */
-            margin-bottom: 1em; /* Standard paragraph spacing */
-        }
-        .intro-text ul {
-            list-style-type: disc; /* Ensure bullet points */
-            margin-left: 25px; /* Indent the list slightly */
-            margin-top: 1em; /* Space from preceding text */
-            padding: 0;
-        }
-        .intro-text li {
-            margin-bottom: 0.5em;
-        }
-        .intro-text strong {
-            color: #0056b3; /* Darker blue for bold text in intro */
-        }
-        .section-title {
-            text-align: center;
-            color: #28a745; /* Green for main section titles */
-            font-size: 2.4em; /* Slightly larger section titles */
-            margin-top: 50px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #28a745; /* Thicker border */
-            position: relative;
-            z-index: 1;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 8px;
-            background: #28a745;
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 4px;
-        }
-        .tse-explanation {
-            text-align: center;
-            font-size: 1.05em;
-            color: #666;
-            margin-top: -15px; /* Pull it slightly up to connect with title */
-            margin-bottom: 30px;
-            padding: 10px 20px;
-            background-color: #f0f8ff; /* Light blue background */
-            border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-        }
-        .text-prompt {
-            text-align: center;
-            font-size: 1.1em;
-            color: #555;
-            margin-bottom: 10px;
-            font-style: italic;
-            padding: 5px 0;
-            background-color: #f0f0f0; /* Light background for prompts */
-            border-radius: 5px;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 700px;
-        }
-        .image-container, .video-container {
-            text-align: center;
-            margin-bottom: 40px; /* More space below image/video */
-            padding: 20px;
-            background-color: #f9f9f9; /* Light background for image/video section */
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
-        .image-container img {
-            max-width: 90%; /* Ensure image fits well */
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-        }
-        .image-container img:hover {
-            transform: scale(1.02); /* Slightly zoom on hover */
-        }
-        .video-container video {
-            max-width: 90%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .video-container video:hover {
-            transform: scale(1.02);
-        }
-        .image-container h3, .video-container h3 {
-            font-size: 1.8em; /* Larger title */
-            color: #fd7e14; /* Orange for title */
-            margin-top: 15px;
-            font-weight: 500;
+        :root {
+            --bg: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent-blue: #00d2ff;
+            --accent-green: #00ff88;
+            --accent-purple: #9d50bb;
+            --accent-orange: #ff9d00;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
-        /* Flexbox for audio rows */
-        .audio-row {
-            display: flex;
-            flex-wrap: wrap; /* Allow items to wrap to next line */
-            justify-content: center; /* Center items in the row */
-            gap: 20px; /* Space between audio items */
-            margin-bottom: 35px; /* Space between rows */
-            padding-bottom: 25px;
-            border-bottom: 1px dashed #cceeff; /* Dotted light blue line */
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 210, 255, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(157, 80, 187, 0.08) 0%, transparent 35%);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+            padding-bottom: 100px;
         }
-        .audio-row:last-of-type {
-            border-bottom: none; /* No border for the last row */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部标题装饰 */
+        header {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        h1.hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .intro-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 35px;
+            margin: 40px 0 80px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .intro-box p { font-size: 1.1rem; color: var(--text-dim); }
+        .label-guide {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .label-guide span b { color: var(--accent-blue); }
+
+        /* 章节标题 */
+        .section-header {
+            margin-top: 120px;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .section-header .line {
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        /* 卡片设计 */
+        .case-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 50px;
+            transition: all 0.4s ease;
+        }
+        .case-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .case-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--accent-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 媒体布局 */
+        .visual-area {
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+        }
+        .visual-area img, .visual-area video {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .visual-area:hover img { transform: scale(1.02); }
+
+        /* 音频网格 */
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         .audio-item {
-            flex: 1 1 calc(33.333% - 20px); /* Default to 3 items per row */
-            min-width: 280px; /* Minimum width to prevent squishing */
-            max-width: calc(50% - 20px); /* For 2 items per row when fewer items per row */
-            box-sizing: border-box;
-            text-align: center;
-            padding: 15px;
-            background-color: #f0f8ff; /* Light background for each audio item */
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease-in-out;
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
-        .audio-item:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+        .audio-item h4 {
+            margin: 0 0 12px 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
         }
-        .audio-item h2 {
+        audio {
+            width: 100%;
+            height: 35px;
+            filter: invert(100%) hue-rotate(180deg) brightness(1.5);
+        }
+
+        /* TSE 专属样式 */
+        .tse-info {
+            background: rgba(255, 157, 0, 0.05);
+            border-left: 4px solid var(--accent-orange);
+            padding: 20px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 25px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
             margin-bottom: 10px;
-            color: #6c757d; /* Darker grey for audio demo titles */
-            font-size: 1.3em; /* Slightly smaller audio titles */
-            font-weight: 400; /* Lighter weight */
+            background: var(--accent-orange);
+            color: #000;
         }
-        .audio-item audio {
-            width: 100%; /* Make audio player fill its container */
-            margin-bottom: 0; /* Remove extra margin */
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            border: 1px solid #b3e0ff;
+        .prompt-text {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-orange);
+            font-size: 1.1rem;
         }
 
-        /* Adjustments for num_per_row = 1 */
-        .audio-row .audio-item[style*="flex: 1 1 calc(100%"] { /* Targeting single items */
-            max-width: 400px; /* Make single items narrower and centered */
-        }
-
-        /* Responsive adjustments */
+        /* 响应式 */
         @media (max-width: 768px) {
-            .container {
-                margin: 20px auto;
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2.5em;
-            }
-            .section-title {
-                font-size: 2em;
-            }
-            .image-container img, .video-container video {
-                max-width: 95%;
-            }
-            .audio-item {
-                flex: 1 1 calc(50% - 20px); /* 2 items per row on smaller screens */
-            }
-        }
-        @media (max-width: 480px) {
-            .audio-item {
-                flex: 1 1 100%; /* 1 item per row on very small screens */
-                max-width: 100%;
-            }
+            h1.hero-title { font-size: 2.5rem; }
+            .audio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>USE Demos</h1>
-        <div class="intro-text">
-            <p>
-                Here, we showcase examples of Universal Sound Separation, Speech-Music Separation, and Target Sound Extraction (TSE). We provide the Mixture audio files and the separated Source audio files. We also include spectrograms for a more intuitive visual observation of the audio characteristics.
-            </p>
-            <p>
-                A quick guide to the labels:
-            </p>
-            <ul>
-                <li><strong>Mix</strong>: Represents the mixed audio.</li>
-                <li><strong>s</strong>: Denotes a ground truth source.</li>
-                <li><strong>p</strong>: Denotes a predicted source.</li>
-            </ul>
-            <p>
-                Please note: Our USE framework predicts sources without prior knowledge of the actual number of sound sources. Therefore, you might observe a difference in the quantity of predicted audio files compared to the actual (ground truth) audio files in some instances.
-            </p>
+
+<div class="container">
+    <header>
+        <h1 class="hero-title">USE Project</h1>
+        <p style="color: var(--accent-blue); font-family: 'JetBrains Mono';">Next-Generation Universal Sound Extraction</p>
+    </header>
+
+    <div class="intro-box">
+        <p>This demo showcases our framework's performance across <b>Universal Sound Separation</b>, <b>Speech-Music Separation</b>, and <b>Target Sound Extraction (TSE)</b>. Our model intelligently handles complex acoustic environments without prior knowledge of source counts.</p>
+        <div class="label-guide">
+            <span><b>Mix</b> // Mixture Audio</span>
+            <span><b>p[n]</b> // Predicted Source</span>
+            <span><b>s[n]</b> // Ground Truth</span>
         </div>
-    <h1 class="section-title">Universal Sound Separation Demos</h1>
-        <div class="image-container">
-            <img src="demo/universal/2mix/spectrogram.jpg" alt="2mix Spectrogram">
-            <h3>2mix Spectrogram</h3>
+    </div>
+
+    <!-- =========================================================================
+         SECTION 1: UNIVERSAL SOUND SEPARATION
+         ========================================================================= -->
+    <div class="section-header">
+        <h2 style="color: var(--accent-blue);">Universal Sound Separation</h2>
+        <div class="line"></div>
+    </div>
+
+    <!-- 2mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 01: 2-Source Mixture</span></div>
+        <div class="visual-area">
+            <img src="demo/universal/2mix/spectrogram.jpg" alt="Spectrogram">
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/universal/2mix/MIX.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/2mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/2mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/2mix/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/2mix/s2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/universal/3mix/spectrogram.jpg" alt="3mix Spectrogram">
-            <h3>3mix Spectrogram</h3>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/2mix/MIX.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/2mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/2mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth 1</h4><audio controls src="demo/universal/2mix/s1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth 2</h4><audio controls src="demo/universal/2mix/s2.wav"></audio></div>
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/MIX.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Ground Truth Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Ground Truth Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/s2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Ground Truth Source 3</h2>
-                    <audio controls>
-                        <source src="demo/universal/3mix/s3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/universal/4mix/spectrogram.jpg" alt="4mix Spectrogram">
-            <h3>4mix Spectrogram</h3>
+    </div>
+
+    <!-- 3mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 02: 3-Source Mixture</span></div>
+        <div class="visual-area">
+            <img src="demo/universal/3mix/spectrogram.jpg" alt="Spectrogram">
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>4mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/universal/4mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/4mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/4mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/universal/4mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 4</h2>
-                    <audio controls>
-                        <source src="demo/universal/4mix/p4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/universal/5mix/spectrogram.jpg" alt="5mix Spectrogram">
-            <h3>5mix Spectrogram</h3>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/3mix/MIX.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/3mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/3mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/universal/3mix/p3.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 1</h4><audio controls src="demo/universal/3mix/s1.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 2</h4><audio controls src="demo/universal/3mix/s2.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 3</h4><audio controls src="demo/universal/3mix/s3.wav"></audio></div>
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>5mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>5mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>5mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>5mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>5mix Predicted Source 4</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/p4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>5mix Predicted Source 5</h2>
-                    <audio controls>
-                        <source src="demo/universal/5mix/p5.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/universal/6mix/spectrogram.jpg" alt="6mix Spectrogram">
-            <h3>6mix Spectrogram</h3>
+    </div>
+
+    <!-- 4mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 03: 4-Source Mixture</span></div>
+        <div class="visual-area">
+            <img src="demo/universal/4mix/spectrogram.jpg" alt="Spectrogram">
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>6mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 4</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 5</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p5.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>6mix Predicted Source 6</h2>
-                    <audio controls>
-                        <source src="demo/universal/6mix/p6.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><h1 class="section-title">Speech-Music Separation Demos</h1>
-        <div class="image-container">
-            <img src="demo/speech_music/2mix/spectrogram.jpg" alt="2mix Spectrogram">
-            <h3>2mix Spectrogram</h3>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/4mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/4mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/4mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/universal/4mix/p3.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 4</h4><audio controls src="demo/universal/4mix/p4.wav"></audio></div>
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/2mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/2mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/2mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source 1</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/2mix/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source 2</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/2mix/s2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/speech_music/3mix/spectrogram.jpg" alt="3mix Spectrogram">
-            <h3>3mix Spectrogram</h3>
+    </div>
+
+    <!-- 5mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 04: 5-Source Mixture</span></div>
+        <div class="visual-area">
+            <img src="demo/universal/5mix/spectrogram.jpg" alt="Spectrogram">
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/3mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/3mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/3mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/3mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-        <div class="image-container">
-            <img src="demo/speech_music/4mix/spectrogram.jpg" alt="4mix Spectrogram">
-            <h3>4mix Spectrogram</h3>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/5mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/5mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/5mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/universal/5mix/p3.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 4</h4><audio controls src="demo/universal/5mix/p4.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 5</h4><audio controls src="demo/universal/5mix/p5.wav"></audio></div>
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>4mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/4mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 1</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/4mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 2</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/4mix/p2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><div class="audio-row">
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 3</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/4mix/p3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>4mix Predicted Source 4</h2>
-                    <audio controls>
-                        <source src="demo/speech_music/4mix/p4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><h1 class="section-title">Target Sound Extraction (TSE) Demos</h1>
-                <p class="tse-explanation">
-                   Our model supports multimodal clues. It performs the TSE task effectively when provided with 1 to 3 types of modal clues. For these demos, we present examples with Video + Text + Tag clues, Video Only clues, or Text Only clues.
-                </p>
-                <p class="text-prompt">Condition: Video + Text + Tag</p><p class="text-prompt">Text Prompt: "a person is whistling"</p><div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>Predicted Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><p class="text-prompt">Condition: Video Only</p>
-        <div class="video-container">
-            <video controls muted loop>
-                <source src="demo/TSE/2mix_v/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <h3>Video Clue</h3>
+    </div>
+
+    <!-- 6mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 05: 6-Source Mixture</span></div>
+        <div class="visual-area">
+            <img src="demo/universal/6mix/spectrogram.jpg" alt="Spectrogram">
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>2mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix_v/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>Predicted Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix_v/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>2mix Ground Truth Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/2mix_v/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><p class="text-prompt">Condition: Video + Text + Tag</p><p class="text-prompt">Text Prompt: "a frog croaks several times"</p><div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>Predicted Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Ground Truth Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div><p class="text-prompt">Condition: Video Only</p>
-        <div class="video-container">
-            <video controls muted loop>
-                <source src="demo/TSE/3mix_v/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <h3>Video Clue</h3>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/universal/6mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/universal/6mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/universal/6mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/universal/6mix/p3.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 4</h4><audio controls src="demo/universal/6mix/p4.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 5</h4><audio controls src="demo/universal/6mix/p5.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 6</h4><audio controls src="demo/universal/6mix/p6.wav"></audio></div>
         </div>
-        <div class="audio-row">
-                <div class="audio-item">
-                    <h2>3mix Mixture</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix_v/Mix.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>Predicted Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix_v/p1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                
-                <div class="audio-item">
-                    <h2>3mix Ground Truth Source</h2>
-                    <audio controls>
-                        <source src="demo/TSE/3mix_v/s1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                </div>
-                <p class="text-prompt">Condition: Text Only</p>
-                <p class="text-prompt">Text Prompt: "a man is speaking"</p>
-                <p class="tse-explanation">
-                   The 10-second mixture audio for this demo contains various noisy elements such as rain, wind, different vehicle horns, and human speech. Our model successfully extracts the clean human voice from this complex environment.
-                </p>
-                <div class="audio-row">
-                    <div class="audio-item">
-                        <h2>4mix Mixture</h2>
-                        <audio controls>
-                            <source src="demo/TSE/4mix/Mix.wav" type="audio/wav">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    
-                    <div class="audio-item">
-                        <h2>Predicted Source</h2>
-                        <audio controls>
-                            <source src="demo/TSE/4mix/p1.wav" type="audio/wav">
-                            Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                </div>
-                </div>
+    </div>
+
+
+    <!-- =========================================================================
+         SECTION 2: SPEECH-MUSIC SEPARATION
+         ========================================================================= -->
+    <div class="section-header">
+        <h2 style="color: var(--accent-green);">Speech-Music Separation</h2>
+        <div class="line"></div>
+    </div>
+
+    <!-- 2mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 06: Speech & Music</span></div>
+        <div class="visual-area"><img src="demo/speech_music/2mix/spectrogram.jpg"></div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/2mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/speech_music/2mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/speech_music/2mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 1</h4><audio controls src="demo/speech_music/2mix/s1.wav"></audio></div>
+            <div class="audio-item"><h4>GT Source 2</h4><audio controls src="demo/speech_music/2mix/s2.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- 3mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 07: Multi-Source Content</span></div>
+        <div class="visual-area"><img src="demo/speech_music/3mix/spectrogram.jpg"></div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/3mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/speech_music/3mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/speech_music/3mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/speech_music/3mix/p3.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- 4mix -->
+    <div class="case-card">
+        <div class="case-title"><span>Case 08: Dense Mixture</span></div>
+        <div class="visual-area"><img src="demo/speech_music/4mix/spectrogram.jpg"></div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/speech_music/4mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 1</h4><audio controls src="demo/speech_music/4mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 2</h4><audio controls src="demo/speech_music/4mix/p2.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 3</h4><audio controls src="demo/speech_music/4mix/p3.wav"></audio></div>
+            <div class="audio-item"><h4>Predicted 4</h4><audio controls src="demo/speech_music/4mix/p4.wav"></audio></div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================================
+         SECTION 3: TARGET SOUND EXTRACTION (TSE)
+         ========================================================================= -->
+    <div class="section-header">
+        <h2 style="color: var(--accent-orange);">Target Sound Extraction</h2>
+        <div class="line"></div>
+    </div>
+
+    <p style="color: var(--text-dim); margin-bottom: 30px;">Our model performs zero-shot extraction using multimodal cues (Video, Text, or Tags).</p>
+
+    <!-- TSE 1: 2mix Multimodal -->
+    <div class="case-card">
+        <div class="tse-info">
+            <span class="badge">Condition: Video + Text + Tag</span>
+            <div class="prompt-text">"a person is whistling"</div>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/2mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/2mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/2mix/s1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE 2: 2mix Video Only -->
+    <div class="case-card">
+        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
+        <div class="visual-area">
+            <video controls muted loop src="demo/TSE/2mix_v/video.mp4"></video>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/2mix_v/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/2mix_v/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/2mix_v/s1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE 3: 3mix Multimodal -->
+    <div class="case-card">
+        <div class="tse-info">
+            <span class="badge">Condition: Video + Text + Tag</span>
+            <div class="prompt-text">"a frog croaks several times"</div>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/3mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/3mix/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/3mix/s1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE 4: 3mix Video Only -->
+    <div class="case-card">
+        <div class="tse-info"><span class="badge">Condition: Video Only</span></div>
+        <div class="visual-area">
+            <video controls muted loop src="demo/TSE/3mix_v/video.mp4"></video>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>Mixture</h4><audio controls src="demo/TSE/3mix_v/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted</h4><audio controls src="demo/TSE/3mix_v/p1.wav"></audio></div>
+            <div class="audio-item"><h4>Ground Truth</h4><audio controls src="demo/TSE/3mix_v/s1.wav"></audio></div>
+        </div>
+    </div>
+
+    <!-- TSE 5: 4mix Text Only -->
+    <div class="case-card">
+        <div class="tse-info">
+            <span class="badge">Condition: Text Only</span>
+            <div class="prompt-text">"a man is speaking"</div>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">Note: Mixture contains rain, wind, horns, and speech. Model extracts clean voice.</p>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-item"><h4>4mix Mixture</h4><audio controls src="demo/TSE/4mix/Mix.wav"></audio></div>
+            <div class="audio-item"><h4>Extracted Voice</h4><audio controls src="demo/TSE/4mix/p1.wav"></audio></div>
+        </div>
+    </div>
+
+</div>
+
+<footer style="text-align: center; padding: 100px 0; border-top: 1px solid var(--border); margin-top: 100px;">
+    <p style="color: var(--text-dim); font-size: 0.9rem;">&copy; 2024 USE Project Team. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
